@@ -20,5 +20,12 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    _instanceof:
+        App\Movie\Recommender\Algorithm\AlgorithmInterface:
+            tags: [ 'movie_recommender_algorithm' ]
+
+    App\Movie\Recommender\RecommenderService:
+        arguments:
+            $algorithms: !tagged_iterator { tag: 'movie_recommender_algorithm', default_index_method: 'getAlgorithmName' }
+
+    App\Movie\Recommender\RecommenderInterface: '@App\Movie\Recommender\RecommenderService'
