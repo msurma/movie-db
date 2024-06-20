@@ -1,6 +1,13 @@
 services:
   php:
     image: php:8.3-cli
+    profiles: ["cli-only"]
     volumes:
       - '.:/usr/src/movie-db/'
     working_dir: /usr/src/movie-db/
+
+  composer:
+    image: composer:2.7
+    profiles: ["cli-only"]
+    volumes:
+      - '.:/app/'
