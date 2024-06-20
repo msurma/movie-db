@@ -29,3 +29,10 @@ services:
             $algorithms: !tagged_iterator { tag: 'movie_recommender_algorithm', default_index_method: 'getAlgorithmName' }
 
     App\Movie\Recommender\RecommenderInterface: '@App\Movie\Recommender\RecommenderService'
+
+    Random\Randomizer:
+        class: \Random\Randomizer
+
+    App\Movie\Recommender\Algorithm\RandomRecommendation:
+        arguments:
+            $randomizer: '@Random\Randomizer'
