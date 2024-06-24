@@ -16,8 +16,10 @@ final class MoviesWithMoreThanOneWord implements AlgorithmInterface
 
     public function getRecommendations(array $movies): array
     {
-        return array_filter($movies, function($movie) {
-            return str_contains(trim($movie), ' ');
-        });
+        return array_values(
+            array_filter($movies, function ($movie) {
+                return is_string($movie) && str_contains(trim($movie), ' ');
+            })
+        );
     }
 }
