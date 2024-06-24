@@ -2,7 +2,7 @@
 
 namespace App\Movie\Recommender\Algorithm;
 
-use \Random\Randomizer;
+use App\Utils\Randomizer;
 
 /**
  * Returns X random movies from provided array
@@ -14,7 +14,7 @@ final class RandomRecommendation implements AlgorithmInterface
     private const MOVIE_LIMIT = 3;
 
     public function __construct(
-        private Randomizer $randomizer,
+        private readonly Randomizer $randomizer,
     )
     {
     }

@@ -33,6 +33,6 @@ services:
     Random\Randomizer:
         class: \Random\Randomizer
 
-    App\Movie\Recommender\Algorithm\RandomRecommendation:
+    App\Utils\Randomizer:
         arguments:
-            $randomizer: '@Random\Randomizer'
+            $baseRandomizer: '@Random\Randomizer'
