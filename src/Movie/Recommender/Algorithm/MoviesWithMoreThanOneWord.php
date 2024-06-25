@@ -3,6 +3,8 @@
 namespace App\Movie\Recommender\Algorithm;
 
 /**
+ * Class MoviesWithMoreThanOneWord
+ *
  * Returns movies whose titles contains more than one word
  */
 final class MoviesWithMoreThanOneWord implements AlgorithmInterface

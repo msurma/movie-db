@@ -3,6 +3,8 @@
 namespace App\Movie\Recommender\Algorithm;
 
 /**
+ * Class MoviesStartingWithWAndEvenLength
+ *
  * Returns movies whose titles start with the letter 'W' and have an even
  * number of characters in the title.
  */
@@ -22,7 +24,7 @@ final class MoviesStartingWithWAndEvenLength implements AlgorithmInterface
                 return
                     is_string($movie) &&
                     stripos($movie, 'W') === 0 &&
-                    strlen($movie) % 2 == 0;
+                    mb_strlen($movie) % 2 == 0;
             })
         );
     }

@@ -5,18 +5,19 @@ namespace App\Movie\Recommender\Algorithm;
 use App\Utils\Randomizer;
 
 /**
+ * Class RandomRecommendation
+ *
  * Returns X random movies from provided array
  */
 final class RandomRecommendation implements AlgorithmInterface
 {
     public const NAME = 'randomRecommendation';
 
-    private const MOVIE_LIMIT = 3;
+    public const MOVIE_LIMIT = 3;
 
     public function __construct(
         private readonly Randomizer $randomizer,
-    )
-    {
+    ) {
     }
 
     public static function getAlgorithmName(): string
@@ -26,11 +27,14 @@ final class RandomRecommendation implements AlgorithmInterface
 
     public function getRecommendations(array $movies): array
     {
-        $keys = $this->randomizer->pickArrayKeys($movies, self::MOVIE_LIMIT);
+        $moviesFiltered = array_filter($movies, static fn($value) => is_string($value));
+        $keys = $this->randomizer->pickArrayKeys($moviesFiltered, self::MOVIE_LIMIT);
 
-        return array_map(
-            static fn ($key) => $movies[$key],
-            $keys
+        return array_values(
+            array_map(
+                static fn($key) => $moviesFiltered[$key],
+                $keys
+            )
         );
     }
 }
